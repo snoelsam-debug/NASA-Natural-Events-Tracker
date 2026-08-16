@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Home | NASA Natural Events Tracker{% endblock %}
+
+{% block content %}
+
+<section class="simple-home">
+
+    <img
+        src="{{ url_for('static', filename='images/images.png') }}"
+        alt="NASA logo"
+        class="simple-logo"
+    >
+
+    <h1>NASA Natural Events Tracker</h1>
+
+    <p>
+        Browse current and past natural events using live data
+        from NASA's EONET API.
+    </p>
+
+    <a href="{{ url_for('browse') }}" class="browse-button">
+        Browse Events
+    </a>
+
+</section>
+
+{% endblock %}

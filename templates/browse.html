@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Browse{% endblock %}
+
+{% block content %}
+
+<h1>Current NASA Events</h1>
+<form method="GET" action="{{ url_for('browse') }}" class="filter-form">
+
+    <label for="category">Category:</label>
+
+    <select name="category" id="category">
+        <option value="">All categories</option>
+
+        {% for category in categories %}
+            <option
+                value="{{ category.id }}"
+                {% if selected_category == category.id %}selected{% endif %}
+            >
+                {{ category.title }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label for="status">Status:</label>
+
+    <select name="status" id="status">
+        <option
+            value="open"
+            {% if selected_status == "open" %}selected{% endif %}
+        >
+            Open
+        </option>
+
+        <option
+            value="closed"
+            {% if selected_status == "closed" %}selected{% endif %}
+        >
+            Closed
+        </option>
+
+        <option
+            value="all"
+            {% if selected_status == "all" %}selected{% endif %}
+        >
+            All
+        </option>
+    </select>
+
+    <label for="days">Days:</label>
+
+    <select name="days" id="days">
+        <option value="7" {% if selected_days == "7" %}selected{% endif %}>
+            7 days
+        </option>
+
+        <option value="30" {% if selected_days == "30" %}selected{% endif %}>
+            30 days
+        </option>
+
+        <option value="90" {% if selected_days == "90" %}selected{% endif %}>
+            90 days
+        </option>
+    </select>
+
+    <button type="submit">Apply Filters</button>
+
+    <a href="{{ url_for('browse') }}">Reset</a>
+</form>
+
+<table>
+
+<tr>
+    <th>Title</th>
+    <th>Category</th>
+    <th>Status</th>
+    <th>Date</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Details</th>
+</tr>
+
+{% for event in events %}
+
+<tr>
+    <td>{{ event.title }}</td>
+
+    <td>{{ event.category }}</td>
+
+    <td>{{ event.status }}</td>
+
+    <td>{{ event.event_date }}</td>
+
+    <td>{{ event.latitude }}</td>
+
+    <td>{{ event.longitude }}</td>
+
+    <td>
+    <a href="{{ url_for('event_detail',
+                        eonet_id=event.eonet_id) }}">
+        View
+    </a>
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

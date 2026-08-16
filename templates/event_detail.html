@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}
+Event Details
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ event.title }}</h1>
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <th>Category</th>
+    <td>{{ event.category }}</td>
+</tr>
+
+<tr>
+    <th>Status</th>
+    <td>{{ event.status }}</td>
+</tr>
+
+<tr>
+    <th>Date</th>
+    <td>{{ event.event_date }}</td>
+</tr>
+
+<tr>
+    <th>Latitude</th>
+    <td>{{ event.latitude }}</td>
+</tr>
+
+<tr>
+    <th>Longitude</th>
+    <td>{{ event.longitude }}</td>
+</tr>
+
+<tr>
+    <th>Magnitude</th>
+    <td>{{ event.magnitude }}</td>
+</tr>
+
+<tr>
+    <th>Unit</th>
+    <td>{{ event.mag_unit }}</td>
+</tr>
+
+<tr>
+    <th>Source</th>
+    <td>
+
+        {% if event.source_url %}
+
+            <a href="{{ event.source_url }}"
+               target="_blank">
+
+                Open Source
+
+            </a>
+
+        {% else %}
+
+            No source available
+
+        {% endif %}
+
+    </td>
+</tr>
+
+</table>
+
+<br>
+
+<a href="{{ url_for('browse') }}">
+← Back to Browse
+</a>
+
+{% endblock %}
