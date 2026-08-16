@@ -85,3 +85,9 @@ It can:
   connection.
 - If the NASA API is slow or unavailable, event information may not load.
 - Some NASA events do not contain magnitude information.
+-The application currently implements flash messages for API errors and cases
+ where no events are found.
+
+ The add/remove watch-list and note-saving functionality was not implemented.
+ As a result, the corresponding success flash messages described in Feature F2
+ are also not implemented, since these messages depend on those actions.
